@@ -37,4 +37,4 @@ Claude Fable's focused second review found no remaining Critical or High code de
 - Package dry run and content inspection: passed
 - npm audit: 0 vulnerabilities
 
-An independent human security review remains a planned next milestone before production enforcement adapters are proposed.
+An independent human security review remains a planned next milestone before production evidence emitters are proposed.

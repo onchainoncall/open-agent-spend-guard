@@ -39,4 +39,4 @@ The release is unaudited and does not sign, settle, custody, decode arbitrary ca
 2. Publish anonymized findings and resolve high-severity usability or trust-boundary gaps.
 3. Add a Base Sepolia x402 walkthrough without requiring production funds.
 4. Obtain an independent security review of schemas, normalization, and evaluator behavior.
-5. Propose only validated enforcement adapters after the review.
+5. Propose only validated provider-emitter mappings after the review.
