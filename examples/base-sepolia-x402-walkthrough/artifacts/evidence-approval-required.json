@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "oasg.evidence.v1",
+  "packageId": "oasge_4892dd7c53b60ea7fecaaedc62ea6652",
+  "createdAt": "2026-07-10T23:57:29.262Z",
+  "policy": {
+    "schemaVersion": "oasg.policy.v1",
+    "policyId": "base-sepolia-x402-approval",
+    "version": 1,
+    "name": "Base Sepolia x402 approval policy",
+    "rules": {
+      "allowedChains": [
+        "eip155:84532"
+      ],
+      "assets": [
+        {
+          "assetId": "eip155:84532/erc20:0x036cbd53842c5426634e7929541ec2318f3dcf7e",
+          "maxPerTransaction": "1000",
+          "approvalRequiredAbove": "999"
+        }
+      ],
+      "allowedCounterparties": [
+        "0x1111111111111111111111111111111111111111"
+      ],
+      "allowedPurposes": [
+        "x402_resource_payment"
+      ]
+    }
+  },
+  "request": {
+    "schemaVersion": "oasg.request.v1",
+    "requestId": "x402_base_sepolia_walkthrough_001",
+    "agentId": "onchain-on-call-base-sepolia-walkthrough",
+    "chainId": "eip155:84532",
+    "assetId": "eip155:84532/erc20:0x036cbd53842c5426634e7929541ec2318f3dcf7e",
+    "amount": "1000",
+    "counterparty": "0x1111111111111111111111111111111111111111",
+    "purpose": "x402_resource_payment",
+    "observedAt": "2026-07-10T23:57:29.262Z",
+    "source": {
+      "type": "x402.payment_required.v2",
+      "reference": "http://127.0.0.1:4021/weather",
+      "rawHash": "27208d351d4a3f65dcd31c783495f48920141471713aa30a49a8c1358fd347c6",
+      "metadata": {
+        "scheme": "exact",
+        "acceptIndex": 0,
+        "maxTimeoutSeconds": 300
+      }
+    }
+  },
+  "decision": {
+    "schemaVersion": "oasg.decision.v1",
+    "decisionId": "oasg_023fcf32f02d428a92d59d79df356363",
+    "outcome": "approval_required",
+    "reasonCode": "approval.threshold",
+    "explanation": "Amount 1000 requires approval above 999.",
+    "matchedRule": "/rules/assets/0/approvalRequiredAbove",
+    "policy": {
+      "policyId": "base-sepolia-x402-approval",
+      "version": 1,
+      "hash": "5b058cdaa0574f0c74b063a68dd2077e1100c39936dba9f28adc8083a6443dc7"
+    },
+    "request": {
+      "requestId": "x402_base_sepolia_walkthrough_001",
+      "hash": "bc34ae1dc00c4033593dbf9995ea90c4acb26b2ecc1b25a7a8b1c8a0f843f1c2"
+    },
+    "facts": {
+      "chainId": "eip155:84532",
+      "assetId": "eip155:84532/erc20:0x036cbd53842c5426634e7929541ec2318f3dcf7e",
+      "amount": "1000",
+      "counterparty": "0x1111111111111111111111111111111111111111",
+      "purpose": "x402_resource_payment"
+    },
+    "evaluatedAt": "2026-07-10T23:57:29.262Z"
+  }
+}

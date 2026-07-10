@@ -100,6 +100,18 @@ npx oasg normalize-x402 \
 
 v0.1 supports the `exact` scheme. EVM token addresses become CAIP-19-compatible IDs such as `eip155:8453/erc20:0x...`. Other x402 schemes fail closed.
 
+### Reproduce a Base Sepolia challenge
+
+The repository includes a standalone walkthrough using the official x402 Express middleware, the public x402 facilitator, and Base Sepolia USDC. It captures a real unauthenticated HTTP 402 challenge and creates allow, approval-required, and block evidence packages without using a wallet key or settling funds.
+
+```bash
+cd examples/base-sepolia-x402-walkthrough
+npm ci
+npm run run
+```
+
+See [examples/base-sepolia-x402-walkthrough/README.md](examples/base-sepolia-x402-walkthrough/README.md) for the exact scope and generated artifacts.
+
 ## Normalize a Safe transaction
 
 The Safe adapter consumes a read-only Safe Transaction Service multisig transaction. The caller supplies the chain and native asset ID because a transaction response alone is not sufficient to infer them safely.
@@ -194,6 +206,6 @@ These references define the public protocol and source shapes used by the adapte
 
 ## Project status
 
-v0.1.2 is ready for public testing and design-partner feedback. The next validated work is trusted calldata decoding, signed evidence, provider-emitter mappings, and external replay tests. Runtime enforcement remains the responsibility of wallets and control providers.
+v0.1.2 is ready for public testing and design-partner feedback. A reproducible Base Sepolia x402 challenge walkthrough is included; funded settlement and independent builder replay remain external validation steps. The next validated work is trusted calldata decoding, signed evidence, provider-emitter mappings, and external replay tests. Runtime enforcement remains the responsibility of wallets and control providers.
 
 Maintained by [Onchain On-Call](https://onchainoncall.com/) under the Apache License 2.0.

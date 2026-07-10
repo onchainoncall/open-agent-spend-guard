@@ -1,0 +1,16 @@
+{
+  "name": "onchain-on-call-base-sepolia-x402-walkthrough",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "run": "node run.mjs"
+  },
+  "dependencies": {
+    "@x402/core": "2.18.0",
+    "@x402/evm": "2.18.0",
+    "@x402/express": "2.18.0",
+    "express": "5.1.0",
+    "open-agent-spend-guard": "github:onchainoncall/open-agent-spend-guard#v0.1.2"
+  }
+}

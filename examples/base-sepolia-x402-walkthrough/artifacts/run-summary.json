@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "capturedAt": "2026-07-10T23:57:29.262Z",
+  "protocol": "x402 v2",
+  "network": "eip155:84532",
+  "facilitator": "https://x402.org/facilitator",
+  "resourceUrl": "http://127.0.0.1:4021/weather",
+  "httpStatus": 402,
+  "paymentRequiredHeaderPresent": true,
+  "assetId": "eip155:84532/erc20:0x036cbd53842c5426634e7929541ec2318f3dcf7e",
+  "atomicAmount": "1000",
+  "outcomes": {
+    "allow": "allow",
+    "approval": "approval_required",
+    "block": "block"
+  },
+  "settlementAttempted": false,
+  "settlementReason": "Challenge and policy-evidence walkthrough only; no account key or test token was used."
+}
