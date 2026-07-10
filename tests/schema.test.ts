@@ -37,6 +37,19 @@ describe('versioned schemas and semantic policy checks', () => {
     expect(() => assertPolicy(policy)).toThrow(/Invalid policy/);
   });
 
+  it('reports semantic policy errors through validationResult', () => {
+    const policy = basePolicy();
+    policy.rules.assets.push(structuredClone(policy.rules.assets[0]!));
+    const result = validationResult('policy', policy);
+    expect(result.valid).toBe(false);
+    expect(result.errors).toContainEqual(
+      expect.objectContaining({
+        instancePath: '/rules/assets/1/assetId',
+        keyword: 'semantic',
+      }),
+    );
+  });
+
   it('rejects an asset rule outside allowed chains', () => {
     const policy = basePolicy();
     policy.rules.assets[0]!.assetId = 'eip155:1/slip44:60';

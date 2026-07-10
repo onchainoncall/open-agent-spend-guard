@@ -65,6 +65,14 @@ export function normalizeSafeMultisigTransaction(value: unknown, options: SafeAd
   if (!options.assetId.startsWith(`${options.chainId}/`)) {
     throw new OasgError('SAFE_ASSET_CHAIN_MISMATCH', 'Safe assetId must belong to the supplied chainId.');
   }
+  const nativeAssetPrefix = `${options.chainId}/slip44:`;
+  const nativeAssetReference = options.assetId.slice(nativeAssetPrefix.length);
+  if (!options.assetId.startsWith(nativeAssetPrefix) || !/^(0|[1-9][0-9]*)$/.test(nativeAssetReference)) {
+    throw new OasgError(
+      'SAFE_NATIVE_ASSET_REQUIRED',
+      'Safe native-value transfers require a CAIP-19 native assetId in the slip44 namespace.',
+    );
+  }
   const rawHash = sha256(value);
   const reference = value.safeTxHash ?? value.transactionHash ?? `safe:${value.safe}:nonce:${value.nonce}`;
   const request: SpendRequest = {

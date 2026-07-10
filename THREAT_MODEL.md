@@ -35,6 +35,7 @@ OASG does not establish chain finality, token decimals, contract semantics, Safe
 | Time-of-check/time-of-use swap | Request hash binds the evaluated request | Downstream enforcement must compare that hash |
 | Policy rollback | Policy version and hash are recorded | Version monotonicity is external to OASG |
 | Evidence tampering | Canonical SHA-256 hashes | Hashes are not signatures or trusted timestamps |
+| Timestamp provenance | `evaluatedAt` deterministically copies caller-supplied `request.observedAt` | It is not a trusted execution clock; callers should normalize UTC representations before hashing |
 | Replay | Stable request and decision IDs aid detection | Replay storage and idempotency are external |
 | Dependency compromise | Lockfile, minimal runtime dependencies, CI audit | Supply-chain risk is not eliminated |
 | Sensitive data disclosure | No secrets required; schemas constrain metadata | Policies and evidence may still be confidential |

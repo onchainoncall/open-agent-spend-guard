@@ -51,6 +51,12 @@ describe('x402 v2 adapter', () => {
     expect(request.source?.metadata?.acceptIndex).toBe(1);
   });
 
+  it('ignores scheme-specific amount syntax in an unselected option', () => {
+    const challenge = x402Challenge();
+    challenge.accepts.push({ ...challenge.accepts[0]!, scheme: 'upto', amount: '0.10' });
+    expect(normalizeX402PaymentRequired(challenge, options).amount).toBe(challenge.accepts[0]!.amount);
+  });
+
   it('rejects an out-of-range accepts index', () => {
     expect(() => normalizeX402PaymentRequired(x402Challenge(), { ...options, acceptIndex: 3 })).toThrow(OasgError);
   });

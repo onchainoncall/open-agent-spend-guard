@@ -17,6 +17,7 @@ Supported:
 - `x402Version: 2`
 - `resource` plus non-empty `accepts`
 - `exact` payment scheme
+- scheme-specific validation of the selected payment option; unselected options remain bound by the source hash
 - CAIP-2 network identifiers
 - EVM ERC-20 addresses and portable non-EVM token identifiers
 
@@ -35,6 +36,7 @@ Supported:
 
 - `operation: 0` (`CALL`)
 - native-value transfers
+- caller-supplied native CAIP-19 asset IDs in the `slip44` namespace
 - empty or `0x` calldata
 - zero gas price, zero gas token, and zero or absent refund receiver
 - pending or executed response metadata as evidence

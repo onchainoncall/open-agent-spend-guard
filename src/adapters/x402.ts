@@ -13,7 +13,7 @@ export interface X402AdapterOptions {
   spentInPeriod?: string;
 }
 
-function assertX402(value: unknown): asserts value is X402PaymentRequiredV2 {
+function assertX402Envelope(value: unknown): asserts value is X402PaymentRequiredV2 {
   const candidate = value as Partial<X402PaymentRequiredV2> | null;
   const valid =
     candidate !== null &&
@@ -29,9 +29,7 @@ function assertX402(value: unknown): asserts value is X402PaymentRequiredV2 {
         typeof entry.network === 'string' &&
         typeof entry.asset === 'string' &&
         typeof entry.amount === 'string' &&
-        /^(0|[1-9][0-9]*)$/.test(entry.amount) &&
         typeof entry.payTo === 'string' &&
-        (!entry.network.startsWith('eip155:') || isEvmAddress(entry.payTo)) &&
         Number.isFinite(entry.maxTimeoutSeconds) &&
         entry.maxTimeoutSeconds > 0,
     );
@@ -39,12 +37,17 @@ function assertX402(value: unknown): asserts value is X402PaymentRequiredV2 {
 }
 
 export function normalizeX402PaymentRequired(value: unknown, options: X402AdapterOptions): SpendRequest {
-  assertX402(value);
+  assertX402Envelope(value);
   const acceptIndex = options.acceptIndex ?? 0;
   const accepted = value.accepts[acceptIndex];
   if (!accepted) throw new OasgError('X402_ACCEPT_INDEX', `No x402 payment option exists at index ${acceptIndex}.`);
   if (accepted.scheme !== 'exact') {
     throw new OasgError('UNSUPPORTED_X402_SCHEME', `v0.1 supports the x402 exact scheme, not ${accepted.scheme}.`);
+  }
+  const invalidAmount = !/^(0|[1-9][0-9]*)$/.test(accepted.amount);
+  const invalidPayTo = accepted.network.startsWith('eip155:') && !isEvmAddress(accepted.payTo);
+  if (invalidAmount || invalidPayTo) {
+    throw new ValidationError('x402', 'The selected exact payment option has an invalid atomic amount or payTo address.');
   }
   const rawHash = sha256(value);
   let assetId: string;

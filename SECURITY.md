@@ -12,6 +12,6 @@ Include the affected version, a minimal reproduction, expected impact, and any s
 
 We will acknowledge a complete report within three business days and coordinate remediation and disclosure based on severity. This project does not currently operate a paid bug-bounty program.
 
-## Public issues
+## Ordinary defects
 
-Use GitHub issues for ordinary defects and compatibility gaps. Do not publish an unpatched vulnerability in a public issue.
+Use the [Onchain On-Call support form](https://onchainoncall.com/support/) for ordinary defects and compatibility gaps until the public GitHub mirror is live. Do not include an unpatched vulnerability in an ordinary support request.

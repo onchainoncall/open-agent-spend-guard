@@ -69,7 +69,11 @@
         "projectedPeriodSpend": { "$ref": "#/definitions/atomicAmount" }
       }
     },
-    "evaluatedAt": { "type": "string", "format": "date-time" }
+    "evaluatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Deterministic copy of request.observedAt, not a trusted wall-clock record of evaluator execution."
+    }
   },
   "definitions": {
     "atomicAmount": { "type": "string", "pattern": "^(0|[1-9][0-9]*)$", "maxLength": 78 },

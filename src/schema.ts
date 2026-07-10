@@ -20,23 +20,41 @@ function copyErrors(errors: ErrorObject[] | null | undefined): ErrorObject[] {
   return errors ? structuredClone(errors) : [];
 }
 
-export function assertPolicy(value: unknown): asserts value is SpendPolicy {
-  if (!validatePolicySchema(value)) throw new ValidationError('policy', copyErrors(validatePolicySchema.errors));
+function semanticError(instancePath: string, message: string): ErrorObject {
+  return {
+    instancePath,
+    schemaPath: '#/semantic',
+    keyword: 'semantic',
+    params: {},
+    message,
+  };
+}
+
+function policySemanticErrors(value: SpendPolicy): ErrorObject[] {
   const seenAssets = new Set<string>();
-  const semanticErrors: string[] = [];
+  const errors: ErrorObject[] = [];
   for (const [index, asset] of value.rules.assets.entries()) {
-    if (seenAssets.has(asset.assetId)) semanticErrors.push(`/rules/assets/${index}/assetId is duplicated.`);
+    const assetPath = `/rules/assets/${index}/assetId`;
+    if (seenAssets.has(asset.assetId)) {
+      errors.push(semanticError(assetPath, 'must not duplicate another asset rule'));
+    }
     seenAssets.add(asset.assetId);
     if (!value.rules.allowedChains.includes(chainFromAssetId(asset.assetId))) {
-      semanticErrors.push(`/rules/assets/${index}/assetId belongs to a chain outside allowedChains.`);
+      errors.push(semanticError(assetPath, 'must belong to a chain in allowedChains'));
     }
     if (
       asset.approvalRequiredAbove !== undefined &&
       BigInt(asset.approvalRequiredAbove) > BigInt(asset.maxPerTransaction)
     ) {
-      semanticErrors.push(`/rules/assets/${index}/approvalRequiredAbove exceeds maxPerTransaction.`);
+      errors.push(semanticError(`/rules/assets/${index}/approvalRequiredAbove`, 'must not exceed maxPerTransaction'));
     }
   }
+  return errors;
+}
+
+export function assertPolicy(value: unknown): asserts value is SpendPolicy {
+  if (!validatePolicySchema(value)) throw new ValidationError('policy', copyErrors(validatePolicySchema.errors));
+  const semanticErrors = policySemanticErrors(value);
   if (semanticErrors.length > 0) throw new ValidationError('policy', semanticErrors);
 }
 
@@ -64,6 +82,7 @@ export function validationResult(
         : kind === 'decision'
           ? validateDecisionSchema
           : validateEvidenceSchema;
-  const valid = validator(value);
-  return { valid, errors: copyErrors(validator.errors) };
+  if (!validator(value)) return { valid: false, errors: copyErrors(validator.errors) };
+  const errors = kind === 'policy' ? policySemanticErrors(value as SpendPolicy) : [];
+  return { valid: errors.length === 0, errors };
 }

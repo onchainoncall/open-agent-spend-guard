@@ -11,7 +11,7 @@ function run(args: string[]): any {
 
 describe('packaged CLI', () => {
   it('reports the release version', () => {
-    expect(execFileSync(process.execPath, [cli, '--version'], { encoding: 'utf8' }).trim()).toBe('0.1.0');
+    expect(execFileSync(process.execPath, [cli, '--version'], { encoding: 'utf8' }).trim()).toBe('0.1.1');
   });
 
   it.each([
@@ -79,6 +79,20 @@ describe('packaged CLI', () => {
     });
     expect(result.status).toBe(0);
     expect(JSON.parse(result.stdout).valid).toBe(true);
+  });
+
+  it('rejects a schema-valid policy with semantic errors', () => {
+    const policy = JSON.parse(readFileForStdin('examples/policy.base-usdc.json'));
+    policy.rules.assets.push(structuredClone(policy.rules.assets[0]));
+    const result = spawnSync(process.execPath, [cli, 'validate', 'policy', '-'], {
+      cwd: root,
+      encoding: 'utf8',
+      input: JSON.stringify(policy),
+    });
+    expect(result.status).toBe(1);
+    const output = JSON.parse(result.stdout);
+    expect(output.valid).toBe(false);
+    expect(output.errors[0].keyword).toBe('semantic');
   });
 
   it('returns structured errors and a nonzero status for invalid JSON', () => {

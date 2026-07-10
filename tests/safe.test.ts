@@ -86,6 +86,15 @@ describe('Safe Transaction Service adapter', () => {
     ).toThrow(/must belong/);
   });
 
+  it('rejects an ERC-20 asset identifier for a native-value transfer', () => {
+    expect(() =>
+      normalizeSafeMultisigTransaction(safeTransaction(), {
+        ...options,
+        assetId: 'eip155:8453/erc20:0x833589fcd6edb6e08f4c7c32d4f71b54bda02913',
+      }),
+    ).toThrow(/native assetId/);
+  });
+
   it.each(['1.5', '-1', '01', '1e18'])('rejects malformed Safe value %s', (value) => {
     const tx = safeTransaction();
     tx.value = value;

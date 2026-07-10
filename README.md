@@ -32,29 +32,29 @@ OASG addresses that evidence gap without replacing provider controls.
 - Read-only Safe Transaction Service normalization for native `CALL` transfers
 - CLI commands for normalization, validation, evaluation, evidence, and hashing
 - Fail-closed handling for x402 scheme mismatches, Safe delegate calls, calldata, and gas refunds
-- 98 deterministic, boundary, malformed-input, adapter-contract, CLI, golden-vector, and adversarial tests
-- Node.js 20+ support and GitHub Actions CI
+- 102 deterministic, boundary, malformed-input, adapter-contract, CLI, golden-vector, and adversarial tests
+- Node.js 20+ support and a GitHub Actions workflow ready for the public mirror
 
 ## Install
 
 From the tagged public source release:
 
 ```bash
-npm install github:seonfh/open-agent-spend-guard#v0.1.0
+npm install git+https://onchainoncall.com/git/open-agent-spend-guard.git#v0.1.1
 ```
 
 Or install the hosted release artifact directly:
 
 ```bash
-npm install https://onchainoncall.com/downloads/open-agent-spend-guard-0.1.0.tgz
+npm install https://onchainoncall.com/downloads/open-agent-spend-guard-0.1.1.tgz
 ```
 
-Published checksums are available at [onchainoncall.com/downloads/open-agent-spend-guard-v0.1.0-sha256.txt](https://onchainoncall.com/downloads/open-agent-spend-guard-v0.1.0-sha256.txt).
+Published checksums are available at [onchainoncall.com/downloads/open-agent-spend-guard-v0.1.1-sha256.txt](https://onchainoncall.com/downloads/open-agent-spend-guard-v0.1.1-sha256.txt).
 
 For local development:
 
 ```bash
-git clone https://github.com/seonfh/open-agent-spend-guard.git
+git clone https://onchainoncall.com/git/open-agent-spend-guard.git
 cd open-agent-spend-guard
 npm ci
 npm run check
@@ -175,6 +175,8 @@ Rules use a fixed precedence so the same valid inputs always produce the same pr
 - OASG evaluates data; it does not prove that source data is authentic.
 - Policy distribution, policy rollback protection, and authorization are caller responsibilities.
 - `spentInPeriod` is a caller-supplied snapshot, not an internal ledger. A policy with a period budget blocks when that snapshot is missing.
+- `evaluatedAt` is a deterministic copy of the caller-supplied `request.observedAt`; it is not a trusted record of when the evaluator process ran.
+- Hashes bind the exact JSON value. Normalize timestamps to one UTC representation before evaluation when equivalent instants must produce byte-for-byte identical evidence across systems.
 - Hashes use RFC 8785 JSON Canonicalization Scheme serialization to make evidence reproducible; they are not signatures or timestamps from a trusted authority.
 - A downstream wallet or payment client must enforce the result immediately and prevent time-of-check/time-of-use substitution.
 - No private key, seed phrase, signature, or RPC write endpoint is required or accepted.
@@ -192,6 +194,6 @@ These references define the public protocol and source shapes used by the adapte
 
 ## Project status
 
-v0.1.0 is ready for public testing and design-partner feedback. The next validated work is trusted calldata decoding, signed evidence, provider-emitter mappings, and external replay tests. Runtime enforcement remains the responsibility of wallets and control providers.
+v0.1.1 is ready for public testing and design-partner feedback. The next validated work is trusted calldata decoding, signed evidence, provider-emitter mappings, and external replay tests. Runtime enforcement remains the responsibility of wallets and control providers.
 
 Maintained by [Onchain On-Call](https://onchainoncall.com/) under the Apache License 2.0.

@@ -24,7 +24,11 @@
     "amount": { "$ref": "#/definitions/atomicAmount" },
     "counterparty": { "type": "string", "minLength": 1, "maxLength": 256 },
     "purpose": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$" },
-    "observedAt": { "type": "string", "format": "date-time" },
+    "observedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Caller-supplied source observation time. Normalize to UTC before hashing when cross-system byte-for-byte reproducibility is required."
+    },
     "spentInPeriod": { "$ref": "#/definitions/atomicAmount" },
     "source": {
       "type": "object",
