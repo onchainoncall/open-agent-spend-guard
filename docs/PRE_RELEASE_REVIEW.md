@@ -38,3 +38,7 @@ Claude Fable's focused second review found no remaining Critical or High code de
 - npm audit: 0 vulnerabilities
 
 An independent human security review remains a planned next milestone before production evidence emitters are proposed.
+
+## Publication closure
+
+The repository was published at `https://github.com/onchainoncall/open-agent-spend-guard`. The v0.1.2 publication release retains the remediated behavior and adds canonical GitHub metadata plus repeatable remote CI triggering.

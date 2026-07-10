@@ -1,6 +1,6 @@
 {
   "name": "open-agent-spend-guard",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Deterministic policy decisions and portable evidence for agent-initiated onchain payments.",
   "type": "module",
   "license": "Apache-2.0",
@@ -8,10 +8,10 @@
   "homepage": "https://onchainoncall.com/agent-spend-controls/",
   "repository": {
     "type": "git",
-    "url": "git+https://onchainoncall.com/git/open-agent-spend-guard.git"
+    "url": "git+https://github.com/onchainoncall/open-agent-spend-guard.git"
   },
   "bugs": {
-    "url": "https://onchainoncall.com/support/"
+    "url": "https://github.com/onchainoncall/open-agent-spend-guard/issues"
   },
   "keywords": [
     "agent",

@@ -2,6 +2,12 @@
 
 All notable changes are documented here.
 
+## 0.1.2 - 2026-07-10
+
+- Published the canonical repository under the Onchain On-Call GitHub organization.
+- Switched package, installation, clone, and issue links to the public GitHub repository.
+- Added a manual GitHub Actions trigger for repeatable remote release verification.
+
 ## 0.1.1 - 2026-07-10
 
 - Added semantic policy checks to the validation API and CLI.

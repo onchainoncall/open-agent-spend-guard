@@ -64,7 +64,7 @@ export async function main(argv = process.argv): Promise<void> {
   program
     .name('oasg')
     .description('Deterministic spend-policy decisions for agent-initiated onchain payments.')
-    .version('0.1.1');
+    .version('0.1.2');
 
   program
     .command('evaluate')

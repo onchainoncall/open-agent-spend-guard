@@ -14,4 +14,4 @@ We will acknowledge a complete report within three business days and coordinate 
 
 ## Ordinary defects
 
-Use the [Onchain On-Call support form](https://onchainoncall.com/support/) for ordinary defects and compatibility gaps until the public GitHub mirror is live. Do not include an unpatched vulnerability in an ordinary support request.
+Use [GitHub Issues](https://github.com/onchainoncall/open-agent-spend-guard/issues) for ordinary defects and compatibility gaps. Do not include an unpatched vulnerability in a public issue.

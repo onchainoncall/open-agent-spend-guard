@@ -33,28 +33,28 @@ OASG addresses that evidence gap without replacing provider controls.
 - CLI commands for normalization, validation, evaluation, evidence, and hashing
 - Fail-closed handling for x402 scheme mismatches, Safe delegate calls, calldata, and gas refunds
 - 102 deterministic, boundary, malformed-input, adapter-contract, CLI, golden-vector, and adversarial tests
-- Node.js 20+ support and a GitHub Actions workflow ready for the public mirror
+- Node.js 20+ support with public GitHub Actions checks across Node.js 20, 22, and 24
 
 ## Install
 
 From the tagged public source release:
 
 ```bash
-npm install git+https://onchainoncall.com/git/open-agent-spend-guard.git#v0.1.1
+npm install github:onchainoncall/open-agent-spend-guard#v0.1.2
 ```
 
 Or install the hosted release artifact directly:
 
 ```bash
-npm install https://onchainoncall.com/downloads/open-agent-spend-guard-0.1.1.tgz
+npm install https://onchainoncall.com/downloads/open-agent-spend-guard-0.1.2.tgz
 ```
 
-Published checksums are available at [onchainoncall.com/downloads/open-agent-spend-guard-v0.1.1-sha256.txt](https://onchainoncall.com/downloads/open-agent-spend-guard-v0.1.1-sha256.txt).
+Published checksums are available at [onchainoncall.com/downloads/open-agent-spend-guard-v0.1.2-sha256.txt](https://onchainoncall.com/downloads/open-agent-spend-guard-v0.1.2-sha256.txt).
 
 For local development:
 
 ```bash
-git clone https://onchainoncall.com/git/open-agent-spend-guard.git
+git clone https://github.com/onchainoncall/open-agent-spend-guard.git
 cd open-agent-spend-guard
 npm ci
 npm run check
@@ -194,6 +194,6 @@ These references define the public protocol and source shapes used by the adapte
 
 ## Project status
 
-v0.1.1 is ready for public testing and design-partner feedback. The next validated work is trusted calldata decoding, signed evidence, provider-emitter mappings, and external replay tests. Runtime enforcement remains the responsibility of wallets and control providers.
+v0.1.2 is ready for public testing and design-partner feedback. The next validated work is trusted calldata decoding, signed evidence, provider-emitter mappings, and external replay tests. Runtime enforcement remains the responsibility of wallets and control providers.
 
 Maintained by [Onchain On-Call](https://onchainoncall.com/) under the Apache License 2.0.

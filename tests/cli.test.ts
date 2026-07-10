@@ -11,7 +11,7 @@ function run(args: string[]): any {
 
 describe('packaged CLI', () => {
   it('reports the release version', () => {
-    expect(execFileSync(process.execPath, [cli, '--version'], { encoding: 'utf8' }).trim()).toBe('0.1.1');
+    expect(execFileSync(process.execPath, [cli, '--version'], { encoding: 'utf8' }).trim()).toBe('0.1.2');
   });
 
   it.each([
