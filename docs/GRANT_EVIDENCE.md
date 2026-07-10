@@ -2,6 +2,10 @@
 
 Release target: v0.1.0.
 
+Public package: `https://onchainoncall.com/downloads/open-agent-spend-guard-0.1.0.tgz`
+
+Public source archive: `https://onchainoncall.com/downloads/open-agent-spend-guard-source-v0.1.0.zip`
+
 ## Shipped public-good artifacts
 
 - Provider-neutral policy, request, decision, and evidence-package schemas

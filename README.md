@@ -43,6 +43,14 @@ From the tagged public source release:
 npm install github:seonfh/open-agent-spend-guard#v0.1.0
 ```
 
+Or install the hosted release artifact directly:
+
+```bash
+npm install https://onchainoncall.com/downloads/open-agent-spend-guard-0.1.0.tgz
+```
+
+Published checksums are available at [onchainoncall.com/downloads/open-agent-spend-guard-v0.1.0-sha256.txt](https://onchainoncall.com/downloads/open-agent-spend-guard-v0.1.0-sha256.txt).
+
 For local development:
 
 ```bash
