@@ -192,6 +192,6 @@ These references define the public protocol and source shapes used by the adapte
 
 ## Project status
 
-v0.1.0 is ready for public testing and design-partner feedback. The next validated work is trusted calldata decoding, stateful budget sources, signed evidence, and wallet-client enforcement adapters. Those are intentionally outside this release until the trust model is reviewed.
+v0.1.0 is ready for public testing and design-partner feedback. The next validated work is trusted calldata decoding, signed evidence, provider-emitter mappings, and external replay tests. Runtime enforcement remains the responsibility of wallets and control providers.
 
 Maintained by [Onchain On-Call](https://onchainoncall.com/) under the Apache License 2.0.
