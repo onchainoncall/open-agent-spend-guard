@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "oasg.policy.v1",
+  "policyId": "base-ops-usdc",
+  "version": 1,
+  "name": "Base operations agent",
+  "rules": {
+    "allowedChains": ["eip155:8453"],
+    "assets": [
+      {
+        "assetId": "eip155:8453/erc20:0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "maxPerTransaction": "500000000",
+        "approvalRequiredAbove": "200000000",
+        "periodBudget": { "period": "day", "limit": "1000000000" }
+      }
+    ],
+    "allowedCounterparties": ["0x1111111111111111111111111111111111111111"],
+    "allowedPurposes": ["x402_resource_payment"]
+  }
+}

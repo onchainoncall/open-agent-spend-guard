@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://onchainoncall.com/schemas/oasg.decision.v1.json",
+  "title": "Open Agent Spend Guard Decision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "decisionId",
+    "outcome",
+    "reasonCode",
+    "explanation",
+    "matchedRule",
+    "policy",
+    "request",
+    "facts",
+    "evaluatedAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "oasg.decision.v1" },
+    "decisionId": { "type": "string", "pattern": "^oasg_[a-f0-9]{32}$" },
+    "outcome": { "enum": ["allow", "block", "approval_required"] },
+    "reasonCode": {
+      "enum": [
+        "chain.not_allowed",
+        "asset.chain_mismatch",
+        "asset.not_allowed",
+        "counterparty.not_allowed",
+        "purpose.not_allowed",
+        "amount.max_transaction",
+        "budget.snapshot_required",
+        "budget.period_limit",
+        "approval.threshold",
+        "policy.allow"
+      ]
+    },
+    "explanation": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "matchedRule": { "type": "string", "pattern": "^/" },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "version", "hash"],
+      "properties": {
+        "policyId": { "type": "string" },
+        "version": { "type": "integer", "minimum": 1 },
+        "hash": { "$ref": "#/definitions/hash" }
+      }
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requestId", "hash"],
+      "properties": {
+        "requestId": { "type": "string" },
+        "hash": { "$ref": "#/definitions/hash" }
+      }
+    },
+    "facts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chainId", "assetId", "amount", "counterparty", "purpose"],
+      "properties": {
+        "chainId": { "type": "string" },
+        "assetId": { "type": "string" },
+        "amount": { "$ref": "#/definitions/atomicAmount" },
+        "counterparty": { "type": "string" },
+        "purpose": { "type": "string" },
+        "spentInPeriod": { "$ref": "#/definitions/atomicAmount" },
+        "projectedPeriodSpend": { "$ref": "#/definitions/atomicAmount" }
+      }
+    },
+    "evaluatedAt": { "type": "string", "format": "date-time" }
+  },
+  "definitions": {
+    "atomicAmount": { "type": "string", "pattern": "^(0|[1-9][0-9]*)$", "maxLength": 78 },
+    "hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

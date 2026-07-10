@@ -1,0 +1,19 @@
+{
+  "x402Version": 2,
+  "resource": {
+    "url": "https://api.example.test/research",
+    "description": "Example paid research endpoint",
+    "mimeType": "application/json"
+  },
+  "accepts": [
+    {
+      "scheme": "exact",
+      "network": "eip155:8453",
+      "asset": "0x833589FCD6eDb6E08f4c7C32D4f71b54bDa02913",
+      "amount": "100000000",
+      "payTo": "0x1111111111111111111111111111111111111111",
+      "maxTimeoutSeconds": 60,
+      "extra": { "name": "USDC", "version": "2" }
+    }
+  ]
+}

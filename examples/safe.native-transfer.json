@@ -1,0 +1,18 @@
+{
+  "safe": "0x2222222222222222222222222222222222222222",
+  "to": "0x1111111111111111111111111111111111111111",
+  "value": "100000000000000000",
+  "data": "0x",
+  "operation": 0,
+  "safeTxGas": "0",
+  "baseGas": "0",
+  "gasPrice": "0",
+  "gasToken": "0x0000000000000000000000000000000000000000",
+  "refundReceiver": "0x0000000000000000000000000000000000000000",
+  "nonce": "42",
+  "safeTxHash": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "submissionDate": "2026-07-10T18:00:00Z",
+  "isExecuted": false,
+  "confirmationsRequired": 2,
+  "confirmations": []
+}

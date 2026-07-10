@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://onchainoncall.com/schemas/oasg.request.v1.json",
+  "title": "Open Agent Spend Guard Request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "requestId",
+    "agentId",
+    "chainId",
+    "assetId",
+    "amount",
+    "counterparty",
+    "purpose",
+    "observedAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "oasg.request.v1" },
+    "requestId": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{2,127}$" },
+    "agentId": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{2,127}$" },
+    "chainId": { "$ref": "#/definitions/chainId" },
+    "assetId": { "$ref": "#/definitions/assetId" },
+    "amount": { "$ref": "#/definitions/atomicAmount" },
+    "counterparty": { "type": "string", "minLength": 1, "maxLength": 256 },
+    "purpose": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{1,63}$" },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "spentInPeriod": { "$ref": "#/definitions/atomicAmount" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": { "type": "string", "minLength": 1, "maxLength": 80 },
+        "reference": { "type": "string", "minLength": 1, "maxLength": 512 },
+        "rawHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              { "type": "string" },
+              { "type": "number" },
+              { "type": "boolean" },
+              { "type": "null" }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "atomicAmount": { "type": "string", "pattern": "^(0|[1-9][0-9]*)$", "maxLength": 78 },
+    "chainId": { "type": "string", "pattern": "^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,64}$" },
+    "assetId": {
+      "type": "string",
+      "pattern": "^[-a-z0-9]{3,8}:[-_a-zA-Z0-9]{1,64}/[-a-z0-9]{3,8}:[-._%a-zA-Z0-9]{1,128}$"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "name": "open-agent-spend-guard",
+  "version": "0.1.0",
+  "description": "Deterministic policy decisions and portable evidence for agent-initiated onchain payments.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Onchain On-Call <support@onchainoncall.com>",
+  "homepage": "https://onchainoncall.com/agent-spend-controls/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seonfh/open-agent-spend-guard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seonfh/open-agent-spend-guard/issues"
+  },
+  "keywords": [
+    "agent",
+    "payments",
+    "policy",
+    "x402",
+    "safe",
+    "base",
+    "blockchain"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "oasg": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "examples",
+    "README.md",
+    "LICENSE",
+    "NOTICE",
+    "SECURITY.md",
+    "THREAT_MODEL.md",
+    "COMPATIBILITY.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "check": "npm run typecheck && npm run test && npm run build && npm run pack:check",
+    "pack:check": "npm pack --dry-run",
+    "prepare": "npm run build",
+    "pretest": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "canonicalize": "3.0.0",
+    "commander": "^14.0.1"
+  },
+  "devDependencies": {
+    "@x402/core": "2.18.0",
+    "@types/node": "^24.0.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  },
+  "overrides": {
+    "esbuild": "0.28.1"
+  }
+}

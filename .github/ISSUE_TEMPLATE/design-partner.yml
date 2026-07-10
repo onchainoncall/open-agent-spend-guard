@@ -1,0 +1,26 @@
+name: Design-partner feedback
+description: Share structured feedback from a synthetic or testnet evaluation.
+title: "[Design partner]: "
+labels: [design-partner]
+body:
+  - type: dropdown
+    id: source
+    attributes:
+      label: Payment source
+      options: [x402 v2, Safe Transaction Service, Normalized request, Another provider]
+    validations:
+      required: true
+  - type: textarea
+    id: task
+    attributes:
+      label: Policy task tested
+      description: Describe the synthetic or testnet case. Do not include secrets or production transaction data.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: Result and friction
+      description: Include install time, mapping time, expected outcome, actual outcome, and missing controls.
+    validations:
+      required: true

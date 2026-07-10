@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "oasg.golden-vectors.v1",
+  "canonicalization": {
+    "input": { "a": 2, "B": 1, "ä": 3, "z": 4 },
+    "canonical": "{\"B\":1,\"a\":2,\"z\":4,\"ä\":3}",
+    "sha256": "24df10efd1d8e9235f6f1607636cec2cf7e5b80066af850a61be190ef7d502d2"
+  },
+  "numberSerialization": {
+    "numbers": [333333333.33333329, 1e30, 4.5, 0.002, 1e-27, -0],
+    "canonical": "{\"numbers\":[333333333.3333333,1e+30,4.5,0.002,1e-27,0]}",
+    "sha256": "5c34ad2f0b62822dda6a8fbcb5ad901f69fba1c84571ee09063f63266f06fc58"
+  },
+  "policyHash": "5b3db22628eeec8f510a86ba9ba9a60414b1bc5391c2257513262c4b9c0fd3e4",
+  "evaluations": {
+    "allow": {
+      "requestHash": "4f8c856181b99228b2b7f5219f22dcc2c94f3efdfabaf80ff467a48a5a1f0516",
+      "decisionId": "oasg_7f55ac6c2ad2cec6f499182de1ae1a6d",
+      "packageId": "oasge_e04a1252125a395173a6bdd53b410ca2"
+    },
+    "approval": {
+      "requestHash": "3b3644bdff5db3e1c2817e13cad9b3ba2fb9fa1b246b5863d33f714be0e6e723",
+      "decisionId": "oasg_059ee39481f93161d423ad6aad194597",
+      "packageId": "oasge_981574c2f36ab9744c230509789eab89"
+    },
+    "block": {
+      "requestHash": "ab046c6a3e177168be56d81ab3af5872474d30a5a0d1112c3e088d233f0a8d63",
+      "decisionId": "oasg_6c2460419856dca80a43930a0ff6bf0d",
+      "packageId": "oasge_369f2e21be63aa36ca05ca5536406515"
+    }
+  }
+}

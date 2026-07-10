@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://onchainoncall.com/schemas/oasg.evidence.v1.json",
+  "title": "Open Agent Spend Guard Evidence Package v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "packageId", "createdAt", "policy", "request", "decision"],
+  "properties": {
+    "schemaVersion": { "const": "oasg.evidence.v1" },
+    "packageId": { "type": "string", "pattern": "^oasge_[a-f0-9]{32}$" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "policy": { "$ref": "https://onchainoncall.com/schemas/oasg.policy.v1.json" },
+    "request": { "$ref": "https://onchainoncall.com/schemas/oasg.request.v1.json" },
+    "decision": { "$ref": "https://onchainoncall.com/schemas/oasg.decision.v1.json" }
+  }
+}
